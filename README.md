@@ -1,5 +1,3 @@
-# python-challange
-
 # Python Homework - Py Me Up, Charlie
 
 ## Background

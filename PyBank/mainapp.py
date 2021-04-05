@@ -1,41 +1,112 @@
-
-#Dependencies
 import os
 import csv
 
+csv_path="Resources/budget_data.csv"
 
-#Path to reach out data
-csv_path=os.path.join("Resources/budget_data.csv")
-
-# The function reading csv file, which using with os library.
-# The function will return data as a dictionary
 def ReadReturnCSV(path):
     with open(path) as csv_file:
         csvreader=csv.reader(csv_file,delimiter=',')
-
-        ### Total Number of Month which have been effect to budget
-
-        listMonths=[]
-        listBudget=[]
-
+        csv_header = next(csvreader)
+        
+        listA=[]
+        listB=[]
         for row in csvreader:
-            listMonths.append(row[0])
-            listBudget.append(row[1])
-        # the data which is list type are convert into dictionary with zip function
-        dictBudget=dict(zip(listMonths,listBudget))
+            listA.append(row[0])
+            listB.append(float(row[1]))
+        
+        dictAB=dict(zip(listA,listB))
 
-    return dictBudget
+    return dictAB
+    
 # The function returns length for iterable objects
 def ReturnLengthIterableItem(it):
     itLenght=len(it)
     return(itLenght)
 
+# Total number of months
 dictBudget=ReadReturnCSV(csv_path)
-totalMonth=ReturnLengthIterableItem(dictBudget)
-print("Total Number of Month: "+str(totalMonth))
+totalNumberMonth=ReturnLengthIterableItem(dictBudget)
+print("Total Number of Months: "+str(totalNumberMonth))
 
-totalBudget=0
+
+# Total budget
+def TotalValueDict(dicta):
+    total=0
+    for key,value in dicta.items():
+        total=total+value
+
+    return total
+
+budgetTotal=TotalValueDict(dictBudget)
+print("Budget Total: $"+str(budgetTotal))
+
+
+# Dictionary
+# The code makes dictionary divided into dictionary by year
+
+budget2010=[]
+budget2011=[]
+budget2012=[]
+budget2013=[]
+budget2014=[]
+budget2015=[]
+budget2016=[]
+budget2017=[]
 for key,value in dictBudget.items():
-    totalBudget=totalBudget+int(value)
+    stringDate=key.split("-")
+    if stringDate[1]=="2010":
+        date=stringDate[0]
+        budget=value
+        case = [date,budget]
+        budget2010.append(case)
 
-print("Total Budget: "+"$"+str(totalBudget))
+    if stringDate[1]=="2011":
+        date=stringDate[0]
+        budget=value
+        case = [date,budget]
+        budget2011.append(case)
+
+    if stringDate[1]=="2012":
+        date=stringDate[0]
+        budget=value
+        case = [date,budget]
+        budget2012.append(case)
+
+    if stringDate[1]=="2013":
+        date=stringDate[0]
+        budget=value
+        case = [date,budget]
+        budget2013.append(case)
+
+    if stringDate[1]=="2014":
+        date=stringDate[0]
+        budget=value
+        case = [date,budget]
+        budget2014.append(case)
+
+    if stringDate[1]=="2015":
+        date=stringDate[0]
+        budget=value
+        case = [date,budget]
+        budget2015.append(case)
+
+    if stringDate[1]=="2016":
+        date=stringDate[0]
+        budget=value
+        case = [date,budget]
+        budget2016.append(case)
+
+    if stringDate[1]=="2017":
+        date=stringDate[0]
+        budget=value
+        case = [date,budget]
+        budget2017.append(case)
+
+
+dictBudget2010=dict(budget2010)
+
+print(dictBudget2010)
+
+
+
+

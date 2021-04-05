@@ -41,6 +41,37 @@ budgetTotal=TotalValueDict(dictBudget)
 print("Budget Total: $"+str(budgetTotal))
 
 
+# Code calculates budget change monthly
+# The change is listed
+dictBudgetValues=list(dictBudget.values())
+listBudgetChange=[]
+for i in range(len(dictBudgetValues)-1):
+    listBudgetChange.append(dictBudgetValues[i+1]-dictBudgetValues[i])
+
+# The code calculate average change monthly
+
+totalChangeVolume=0
+numberChanged=0
+for i in listBudgetChange:
+    totalChangeVolume=totalChangeVolume+i
+    numberChanged=numberChanged+1
+
+averageChange=totalChangeVolume/numberChanged
+averageChange=round(averageChange,2)
+print("Average Budget Change: $"+str(averageChange))
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Dictionary
 # The code makes dictionary divided into dictionary by year
 
@@ -105,7 +136,7 @@ for key,value in dictBudget.items():
 
 dictBudget2010=dict(budget2010)
 
-print(dictBudget2010)
+#print(dictBudget2010)
 
 
 
